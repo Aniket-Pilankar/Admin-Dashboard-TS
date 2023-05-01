@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import BarChart from './components/BarChart';
 import Calendar from './components/Calendar';
+import Dashboard from './components/dashboard';
 import FAQ from './components/FAQ';
 import Form from './components/Form';
 import GeographyChart from './components/GeographyChart';
@@ -21,6 +22,7 @@ function App() {
         <main className="content">
           <Topbar />
           <Routes>
+            <Route path="/" element={<Dashboard />} />
             <Route path="/form" element={<Form />} />
             <Route path="/bar" element={<BarChart />} />
             <Route path="/pie" element={<PieChart />} />

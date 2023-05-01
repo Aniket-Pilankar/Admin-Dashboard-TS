@@ -70,6 +70,7 @@ const Calendar = () => {
                   primary={event.title}
                   secondary={
                     <Typography>
+                      {/* //TODO: fix type issue */}
                       {/* {formatDate(event.start, {
                         year: 'numeric',
                         month: 'short',
