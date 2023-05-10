@@ -6,7 +6,7 @@ import BarChart from './components/BarChart';
 import Calendar from './components/Calendar';
 import Dashboard from './components/dashboard';
 import FAQ from './components/FAQ';
-import Form from './components/Form';
+import Form from './components/form';
 import GeographyChart from './components/GeographyChart';
 import LineChart from './components/LineChart';
 import PieChart from './components/PieChart';
