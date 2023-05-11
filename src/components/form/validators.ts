@@ -1,9 +1,10 @@
 import Joi from 'joi';
 
-import { requiredString } from '../../utils/validators';
+import { requiredOneOption, requiredString } from '../../utils/validators';
 import { phoneRegExp } from './constants';
+import { AccessLevel, FormValues } from './types';
 
-export const validationSchema = Joi.object({
+export const validationSchema = Joi.object<FormValues>({
   firstName: requiredString,
   lastName: requiredString,
   email: Joi.string().email({
@@ -16,4 +17,6 @@ export const validationSchema = Joi.object({
     .messages({ 'string.pattern.base': `Phone number must have 10 digits.` }),
   address1: requiredString,
   address2: Joi.string().optional(),
+  accessLevel: requiredOneOption({ option: Object.values(AccessLevel) }),
+  age: requiredString,
 });

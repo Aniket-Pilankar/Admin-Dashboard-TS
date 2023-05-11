@@ -29,6 +29,7 @@ const Select = ({
   onBlur,
   value,
   children,
+  ...props
 }: Props) => {
   const ids = useMemo(
     () => ({
@@ -42,6 +43,7 @@ const Select = ({
     <FormControl fullWidth className={className} error={error} variant="standard">
       <InputLabel htmlFor={ids.input}>{label}</InputLabel>
       <MuiSelect
+        {...props}
         id={ids.input}
         aria-describedby={ids.helperText}
         value={value}

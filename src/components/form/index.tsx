@@ -1,7 +1,9 @@
-import { Box, Button, useMediaQuery } from '@mui/material';
+import { Box, Button, MenuItem, useMediaQuery } from '@mui/material';
 
+import Select from '../../hookcomponent/Select';
 import TextField from '../../hookcomponent/TextField/TextField';
 import Header from '../Header';
+import { accessLevelOptions } from './constants';
 import useFormVM from './vm';
 
 const Form = () => {
@@ -73,6 +75,22 @@ const Form = () => {
             control={control}
             name="address2"
             sx={{ gridColumn: 'span 4' }}
+          />
+          <Select name="accessLevel" control={control} label={'Choose your access level'}>
+            {accessLevelOptions.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.title}
+              </MenuItem>
+            ))}
+          </Select>
+          <TextField
+            required
+            label="Age"
+            variant="filled"
+            control={control}
+            name="age"
+            sx={{ gridColumn: 'span 2' }}
+            type="number"
           />
         </Box>
         <Box display="flex" justifyContent="end" mt="20px">
