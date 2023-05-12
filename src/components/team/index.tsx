@@ -1,16 +1,16 @@
 import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettingsOutlined';
 import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
 import SecurityOutlinedIcon from '@mui/icons-material/SecurityOutlined';
-import { Box, Typography, useTheme } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { DataGrid, GridRenderCellParams, GridToolbar } from '@mui/x-data-grid';
 
-import { mockDataTeam } from '../data/mockData';
-import { tokens } from '../theme';
-import Header from './Header';
+// import { mockDataTeam } from '../data/mockData';
+import Header from '../Header';
+import useTeamVM from './vm';
 
 const Team = () => {
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
+  const { mockDataTeam, colors, isLoading } = useTeamVM();
+
   const columns = [
     { field: 'id', headerName: 'ID' },
     {
@@ -105,12 +105,16 @@ const Team = () => {
           },
         }}
       >
-        <DataGrid
-          checkboxSelection
-          rows={mockDataTeam}
-          columns={columns}
-          slots={{ toolbar: GridToolbar }}
-        />
+        {isLoading ? (
+          '...loading'
+        ) : (
+          <DataGrid
+            checkboxSelection
+            rows={mockDataTeam}
+            columns={columns}
+            slots={{ toolbar: GridToolbar }}
+          />
+        )}
       </Box>
     </Box>
   );

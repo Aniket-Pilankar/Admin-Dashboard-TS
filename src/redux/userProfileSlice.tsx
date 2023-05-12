@@ -28,9 +28,10 @@ const initialState = {
 
 export const createUser = createAsyncThunk('users/create', async (user: UserProfile, thunkAPI) => {
   try {
-    const response = await axios.post(`http://localhost:3004/user`, {
+    const response = await axios.post(`http://localhost:3004/mockDataTeam`, {
       ...user,
-      id: 12,
+      //TODO: fix hardcoded id
+      id: 13,
     });
     return response.data;
   } catch (err) {
@@ -39,7 +40,7 @@ export const createUser = createAsyncThunk('users/create', async (user: UserProf
 });
 
 export const fetchUser = createAsyncThunk('users/fetch', async () => {
-  const response = await axios.get<UserProfile[]>('http://localhost:3004/user');
+  const response = await axios.get<UserProfile[]>('http://localhost:3004/mockDataTeam');
   return response.data;
 });
 
@@ -58,6 +59,9 @@ const userProfileSlice = createSlice({
     builder.addCase(createUser.rejected, (state, action) => {
       state.loading = false;
       state.error = action.error.message || 'Something went wrong';
+    });
+    builder.addCase(fetchUser.fulfilled, (state, action: PayloadAction<UserProfile[]>) => {
+      state.user = action.payload;
     });
   },
 });

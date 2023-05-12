@@ -5,3 +5,14 @@ export const requiredString = Joi.string().required().messages({
   'string.empty': 'This field is required',
   'any.required': 'This field is required',
 });
+
+export const requiredOneOption = ({ option }: { option: string[] }) => {
+  return Joi.string()
+    .required()
+    .valid(...option)
+    .messages({
+      'string.base': 'please select one option',
+      'string.empty': 'please select one option',
+      'any.only': 'please select one option',
+    });
+};

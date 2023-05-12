@@ -11,6 +11,7 @@ import GeographyChart from './components/GeographyChart';
 import LineChart from './components/LineChart';
 import PieChart from './components/PieChart';
 import SidebarComp from './components/Sidebar';
+import Team from './components/team';
 import Topbar from './components/Topbar';
 import GlobalProviders from './GlobalProviders';
 
@@ -23,6 +24,7 @@ function App() {
           <Topbar />
           <Routes>
             <Route path="/" element={<Dashboard />} />
+            <Route path="/team" element={<Team />} />
             <Route path="/form" element={<Form />} />
             <Route path="/bar" element={<BarChart />} />
             <Route path="/pie" element={<PieChart />} />
