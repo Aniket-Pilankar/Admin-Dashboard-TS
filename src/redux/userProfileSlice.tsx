@@ -28,14 +28,18 @@ const initialState = {
 
 export const createUser = createAsyncThunk('users/create', async (user: UserProfile, thunkAPI) => {
   try {
+    /** For generating sequential Id */
+    const userData = await thunkAPI.dispatch(fetchUser()).unwrap();
+    const newId = userData.length + 1;
+
     const response = await axios.post(`http://localhost:3004/mockDataTeam`, {
       ...user,
-      //TODO: fix hardcoded id
-      id: 13,
+      id: newId,
     });
     return response.data;
   } catch (err) {
     console.log('err:', err);
+    return thunkAPI.rejectWithValue('Opps there seems to be an error');
   }
 });
 

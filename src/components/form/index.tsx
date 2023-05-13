@@ -1,13 +1,14 @@
-import { Box, Button, MenuItem, useMediaQuery } from '@mui/material';
+import { Box, MenuItem, useMediaQuery } from '@mui/material';
 
 import Select from '../../hookcomponent/Select';
 import TextField from '../../hookcomponent/TextField/TextField';
 import Header from '../Header';
+import LoaderButton from '../LoaderButton';
 import { accessLevelOptions } from './constants';
 import useFormVM from './vm';
 
 const Form = () => {
-  const { formMethods, onSubmit } = useFormVM();
+  const { formMethods, onSubmit, isLoading } = useFormVM();
 
   const { control, handleSubmit } = formMethods;
 
@@ -94,9 +95,9 @@ const Form = () => {
           />
         </Box>
         <Box display="flex" justifyContent="end" mt="20px">
-          <Button type="submit" color="secondary" variant="contained">
+          <LoaderButton type="submit" isLoading={isLoading} color="secondary" variant="contained">
             Create New User
-          </Button>
+          </LoaderButton>
         </Box>
       </form>
     </Box>

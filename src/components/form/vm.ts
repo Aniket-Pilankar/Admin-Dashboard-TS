@@ -1,9 +1,11 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
 
 import { joiResolver } from '@hookform/resolvers/joi';
 
 import { nanoid } from 'nanoid';
 
+import { RootState } from '../../redux/store';
 import { createUser } from '../../redux/userProfileSlice';
 import { ITeam } from '../../types';
 import { joinName } from '../../utils/helper';
@@ -13,6 +15,7 @@ import { validationSchema } from './validators';
 
 export default function useFormVM() {
   const dispatch = useAppDispatch();
+  const isLoading = useSelector((state: RootState) => state.user.loading);
 
   const formMethods = useForm<FormValues>({
     defaultValues: {
@@ -38,7 +41,6 @@ export default function useFormVM() {
     console.log(data);
     const { firstName, lastName, address1, address2, ...d } = data;
     const name = joinName(firstName, lastName);
-    // const address = address1 + address2;
 
     const user: ITeam = {
       name,
@@ -49,5 +51,5 @@ export default function useFormVM() {
     dispatch(createUser(user));
   };
 
-  return { formMethods, onSubmit };
+  return { formMethods, onSubmit, isLoading };
 }
