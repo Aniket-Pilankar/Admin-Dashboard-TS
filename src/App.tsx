@@ -4,10 +4,12 @@ import { Route, Routes } from 'react-router-dom';
 
 import BarChart from './components/BarChart';
 import Calendar from './components/Calendar';
+import Contacts from './components/Contacts';
 import Dashboard from './components/dashboard';
 import FAQ from './components/FAQ';
 import Form from './components/form';
 import GeographyChart from './components/GeographyChart';
+import Invoices from './components/Invoices';
 import LineChart from './components/LineChart';
 import PieChart from './components/PieChart';
 import SidebarComp from './components/Sidebar';
@@ -25,6 +27,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/team" element={<Team />} />
+            <Route path="/contacts" element={<Contacts />} />
+            <Route path="/invoices" element={<Invoices />} />
             <Route path="/form" element={<Form />} />
             <Route path="/bar" element={<BarChart />} />
             <Route path="/pie" element={<PieChart />} />
