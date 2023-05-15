@@ -32,7 +32,8 @@ export const createUser = createAsyncThunk('users/create', async (user: UserProf
     const userData = await thunkAPI.dispatch(fetchUser()).unwrap();
     const newId = userData.length + 1;
 
-    const response = await axios.post(`http://localhost:3004/mockDataTeam`, {
+    /** used deployed json-server as databases */
+    const response = await axios.post(`https://js-admin-dashboard-ts.vercel.app/mockDataTeam`, {
       ...user,
       id: newId,
     });
@@ -44,7 +45,9 @@ export const createUser = createAsyncThunk('users/create', async (user: UserProf
 });
 
 export const fetchUser = createAsyncThunk('users/fetch', async () => {
-  const response = await axios.get<UserProfile[]>('http://localhost:3004/mockDataTeam');
+  const response = await axios.get<UserProfile[]>(
+    'https://js-admin-dashboard-ts.vercel.app/mockDataTeam',
+  );
   return response.data;
 });
 
